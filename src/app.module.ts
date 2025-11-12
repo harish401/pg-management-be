@@ -18,13 +18,10 @@ import { SubscriptionModule } from './modules/subscription/subscription.module';
       isGlobal: true,
       envFilePath: '../.env',
     }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('MONGODB_URI'),
-      }),
-      inject: [ConfigService],
-    }),
+    // Hardcoded MongoDB connection
+    MongooseModule.forRoot(
+      'mongodb+srv://sumeshsk2001_db_user:mSO9dTbmeb5llsv8@cluster0.iejkxuy.mongodb.net/?appName=Cluster0'
+    ),
     AuthModule,
     EntityModule,
     BuildingModule,
